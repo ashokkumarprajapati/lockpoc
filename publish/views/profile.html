@@ -1,0 +1,240 @@
+<div class="container-fluid">
+     <div class="row-fluid">
+      <div id=span9>
+		Profile
+      </div> <!--/span-->
+    </div><!--/row-->
+</div> <!-- /container -->
+
+{{#if profile}}
+
+<h1 class="given-name">SAP data</h1>
+<p class="given-name">Name: {{profile.sap.Name}}</p>
+<p class="given-name">Location: {{profile.sap.Location}}</p>
+<p class="given-name">Position: {{profile.sap.Position}}</p>
+<p class="given-name">Signum: {{profile.sap.Signum}}</p>
+<p class="given-name">Employee: {{profile.sap.Employee}}</p>
+<p class="given-name">Manager: {{profile.sap.Manager}}</p>
+<h1 class="given-name">Linkedin data</h1>
+<div id="content" class="resume hresume">
+		<a href=#>Shrink</a>
+	<div class="profile-header">
+		<div class="masthead vcard contact" id="member-25079">
+			<div class="image zoomable" style="display:block" id="profile-picture">
+            <img src="{{profile.linkedin.pictureUrl.value}}" class="photo" width="100" height="100" alt="Johan Sellström">
+            <span class="larger-profile-photo-control" style="left: 80px; top: 80px; "></span>
+			</div>
+			<h1>
+				<span id="name" class="n fn">
+					<span class="full-name">
+						<span class="given-name">{{profile.linkedin.firstName.value}}</span>&nbsp;
+						<span class="family-name">{{profile.linkedin.lastName.value}}</span>
+					</span>
+				</span>
+			</h1>
+			<span class="phonetic-full-name"></span>
+			<p class="headline-title title" style="display:block">{{profile.linkedin.headline.value}}</p>
+			<dl id="headline" class="demographic-info adr">
+				<dt>Location</dt>
+				<dd>
+					<span class="locality">
+						<a href=#
+						title="Find users in Stockholm County, Sweden" name="location">{{profile.linkedin.location.name}}</a>
+					</span>
+				</dd>
+				<dt>Industry</dt>
+				<dd class="industry">
+					<a href="#"
+					title="Find users in this industry" name="">{{profile.linkedin.industry.value}}</a>
+				</dd>
+			</dl>
+		</div>
+		<div class="profile-actions-tertiary-container">
+		</div>
+	</div>	
+	
+	<div class="section privacy" id="profile-summary" style="display:block">
+		<div class="header">
+			<h2>Summary</h2>
+		</div>
+		<div class="content">
+			<div id="profile-specialties" class="privacy" style="display:block">
+				<h4>Specialties</h4>
+				<p class="null">{{profile.linkedin.specialties.value}}</p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="section privacy subsection-reorder" id="profile-experience" style="display:block">
+		<div class="header ">
+			<h2>Experience</h2>
+		</div>
+		<div class="content vcalendar">
+			<div>				
+				{{each profile.linkedin.positions.values}}
+				<div class="privacy">
+					<div class="position  first experience vevent vcard summary-current" style="display:block">
+						<a class="include" href="#name"></a>
+						<div class="postitle">
+							<h3 class="false">
+								<strong class="title">
+									<a href="#"
+									title="Find users with this title" name="title">{{this.title}}</a>
+								</strong>
+							</h3>
+							<h4>
+								<strong>
+									<span class=privacy href="#" title="Find users who have worked at this company" name="company">{{this.company.name}}</span>
+								</strong>
+							</h4>
+						</div>
+						<p class="orgstats organization-details current-position"></p>
+						<p class="period">
+							<abbr class="dtstart" title="">{{this.startDate.year}}-{{this.startDate.month}}</abbr>–
+							{{#if this.endDate}} {{this.endDate.year}}-{{this.endDate.month}} {{else}}
+							<abbr class="dtstamp" title="">Present</abbr>{{/if}}
+							<span class="duration">
+								<span class="value-title" title="P6Y1M"></span><script>
+								moment("{{this.startDate.year}}-{{this.startDate.month}}-01", "YYYY-MM-DD").fromNow();
+								</script>
+								</span>
+						</p>
+						<p class=" description current-position">{{this.summary}}</p>
+					</div>
+				</div>
+				{{/each }}
+			</div>
+		</div>
+	</div>
+	
+	<div class="section" id="profile-skills" style="display:block">
+		<div class="header">
+			<h2>Skills &amp; Expertise</h2>
+		</div>
+		<div class="content">
+			<ol class="skills" id="skills-list">				
+			  {{#each profile.linkedin.skills.values}}				
+				<li class="competency show-bean privacy">
+					<span class="miniprofile-container">
+						<span class="jellybean">{{this.skill.name}}}</span>
+					</span>
+				</li>
+			  {{/each}}				
+			</ol>
+		</div>
+	</div>
+	
+	<div class="section subsection-reorder summary-education privacy" id="profile-education"
+	style="display:block">
+		<div class="header">
+			<h2>Education</h2>
+		</div>
+		{{#each profile.linkedin.educations.values}}		
+		<div class="content vcalendar privacy">
+			<div>
+				<div class="position  first education vevent vcard" id="9943518">
+					<h3 class="summary fn org">
+						<span class="school-link">{{this.schoolName}}</span>
+					</h3>
+					<h4 class="details-education">
+						<span class="degree">{{this.degree}}</span>,
+						<span class="major">
+							{{this.fieldOfStudy}}
+						</span>
+					</h4>
+					<p class="period">
+						<abbr class="dtstart" title="">{{this.startDate.year}}</abbr>–
+						<abbr class="dtend" title="">{{this.endDate.year}}</abbr>
+					</p>
+					<p class=" desc details-education"> </p>
+				</div>
+			</div>
+		</div>
+		{{/each}}				
+	</div>
+	
+	<div class="section privacy" id="profile-recommendations privacy">
+		<div class="header">
+			<h2 id="recommendations">Recommendations For {{profile.linkedin.firstName}}</h2>
+		</div>
+		{{#each profile.linkedin.recommendationsReceived.values}}
+		<div class="content privacy">
+			<div class="reference-position first">
+				<!--
+				<div class="postitle">
+					<h3 class="false">
+						<span class="title">{}</span>
+					</h3>
+					<h4>
+						<strong>
+							<span class="org summary">{}</span>
+						</strong>
+					</h4>
+				</div>
+			    -->	
+				<div>
+					<div class="reference">
+						<p>“{{this.recommendationText}}”
+						</p>
+						<p class="distance deg_1">
+							<abbr title="Tomas is your connection">
+								<span class="network-degree">1
+									<sup>st</sup>
+								</span>
+							</abbr>
+							<div class=privacy
+							title="View {{this.recommender.firstName}}'s Profile">{{this.recommender.firstName}} {{this.recommender.lastName}}</div>,
+							<!--<em>{}</em>
+							<br>{}</p>-->
+					</div>
+				</div>
+			</div>
+		</div>
+		{{/each}}
+				
+	</div>
+	<div class="section" id="profile-additional" style="display:block">
+		<div class="header">
+			<h2>Additional Information</h2>
+		</div>
+		<div class="content">
+			<dl>
+				<dt class="websites" style="display:block">Websites:</dt>
+				<dd class="websites" style="display:block">
+					<ul>
+						{{#each profile.linkedin.memberUrlResources.values}}
+						<li class="website privacy">
+							<a href="{{.url}}"
+							target="_blank" title="New window will open">{{this.name}}</a>
+						</li>
+						{{/each}}						
+					</ul>
+				</dd>
+				
+				<dt class="interests privacy" style="display:block">Interests:</dt>
+				<dd class="interests" id="interests" style="display:block">
+					<p class="">
+						{{profile.linkedin.interests.value}}
+					</p>
+				</dd>
+				<dt class="pubgroups" style="display:block">Groups and Associations:</dt>
+				<dd class="pubgroups" id="pubgroups" style="display:block">
+					<p class="privacy">
+						{{profile.linkedin.associations}}
+					</p>
+					<ul class="groups">	
+						{{#each profile.linkedin.groupMemberships.values}}
+						<li class="affiliation vcard privacy">
+							<div class="group-data">
+								<strong class="fn org">{{this.group.name}}</strong>
+							</div>
+						</li>
+						{{/each}}
+						
+					</ul>
+				</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+{{/if}}

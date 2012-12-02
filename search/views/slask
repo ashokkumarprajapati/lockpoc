@@ -1,0 +1,68 @@
+function other_search (facets) {
+  console.log(facets);
+
+  $('div#search-results').html('');
+  $('div#version-info').hide();
+  
+  // serialize our query
+  var data = "{";
+  var counter = 1;
+  for (var i in facets) {
+      var innerObj = facets[i];
+      for(var key in innerObj){
+        data += "\"" + key + "\":\"" + innerObj[key] + "\"";
+      }   
+    if (counter < facets.length) {
+      data += ",";
+    }
+    counter++;
+  } 
+  data += "}";
+
+  console.log("data");
+  console.log(data);
+
+  var url = "http://lockbox.egi.ericsson.com:9200/lockpoc/profiles/_search?analyzer=auto_complete&fields=_source.headline,_source.firstName,_source.lastName,_source.pictureUrl,_source.location.name&q="+ facets.text;
+
+  $.getJSON(url, function(data) {
+     console.log('getJSON');
+     
+     console.log(url);
+
+      var hits = data.hits.hits;
+      console.log(hits);
+      var htmlContent = "";
+      for(var i in hits) {
+        var profileUrl = 'http://statsdsxs.egi.ericsson.com:8084/#/' + hits[i]._id;
+
+        var fields = hits[i].fields;
+        console.log(hits[i].fields);
+        var image = fields["_source.pictureUrl"];
+        var name = fields["_source.firstName"] + " " + fields["_source.lastName"];
+        var headline = fields["_source.headline"];
+        var location = fields["_source.location.name"];
+        
+        htmlContent += '<ol id="result-set" class="photos ab-blue-button">' +
+        '<li class="vcard first  basic" id="vcard-0">' +
+        '<div class="result-data">' +
+        '<a href="' + profileUrl + '" target="_top" tracking="hb_upphoto" data-li-larger-profile="' + image +'">' +
+        '<img src="' + image +'" class="photo" alt="<name>" width="60" height="60">' +
+        '<span class="larger-profile-photo-control"></span> </a> <h2>' +
+        '<a href="' + profileUrl +'" class="fn n external-link trk-profile-name" title="View Profile" target="_top">' + name +'</a>' +
+        '<span class="badges"> </span> </h2> <dl class="vcard-basic"> <dt>Title</dt> <dd class="title">' + headline + '</dd>' +
+        '<dt class="demographic-info">Demographic info</dt> <dd class="location-industry"> <span class="location">' + location + '</span>' +
+        '<span class="separator">·</span> <span class="industry"> Internet </span> </dd> </dl>' +
+        '<dl class="vcard-expanded"> <dt class="incommon-connections">In Common:</dt> </dl> </div> </li> </span> </ol>';
+
+        //htmlContent = template(pass);
+
+        $('div#search-results').append(htmlContent);
+        $('div#search-results').append(template(pass));
+
+      }
+      
+      //$('div#search-results').html(template(pass));
+
+      });
+ }
+  

@@ -1,0 +1,7 @@
+         <h1>{{profile.firstName}} {{profile.lastName}}</h1>
+            <h2> <!-- <img src={{profile.pictureUrl}}> -->
+              {{#if profile.recommendationsReceived._total}}
+              <h3>"{{profile.recommendationsReceived.values}}"</h3>
+              {{/if}}
+            </h2>
+          <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>

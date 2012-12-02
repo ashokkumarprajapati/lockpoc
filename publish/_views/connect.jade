@@ -1,0 +1,87 @@
+doctype 5
+html(lang="en")
+  head
+    meta(charset='utf-8')
+    title LockBox, Connect page
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    // Le styles
+    // TODO: add bootstrap or boottheme generated css file beow
+    // link href="boottheme.css" rel="stylesheet" type="text/css" /
+    style(type='text/css')
+      body {
+      padding-top: 120px;
+      padding-bottom: 40px;
+      }
+    link(href='css/bootstrap-responsive.css', rel='stylesheet', type='text/css')
+    link(href='css/bootstrap-responsive.min.css', rel='stylesheet', type='text/css')
+    link(href='css/bootstrap.css', rel='stylesheet', type='text/css')
+    link(href='css/bootstrap.min.css', rel='stylesheet', type='text/css')
+    link(rel='stylesheet/less', href='less/bootstrap.less', media='all')
+    // HTML5 shim, for IE6-8 support of HTML5 elements
+    //if lt IE 9
+      script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
+    // Fav and touch icons
+    link(rel='shortcut icon', href='../assets/ico/favicon.ico')
+    link(rel='apple-touch-icon-precomposed', sizes='144x144', href='../assets/ico/apple-touch-icon-144-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='114x114', href='../assets/ico/apple-touch-icon-114-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='72x72', href='../assets/ico/apple-touch-icon-72-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', href='../assets/ico/apple-touch-icon-57-precomposed.png')
+    script(src='js/connectpopups/popupopen.js')
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          .btn-group(style='float: right;')
+            .pull-rights
+              a.btn.btn-primary(href='#') Welcome, #{username}
+          a.brand(href='#') LockBox
+      .navbar-inner
+        .nav(style='float: left;')
+          li
+            img.img-rounded(src='')
+          li.active
+            a(href='connect') Connect
+          li
+            a(href='profile') Profile
+          li
+            a(href='logout') Logout
+        // /.nav-collapse
+    .container-fluid
+      .row-fluid
+        // Main hero unit for a primary marketing message or call to action
+        table.table.table-bordered
+          thead
+            tr
+              th Welcome to LockBox
+          tbody
+            tr
+              td
+                | In order to improve the precision in the resource allocation process we need a deep understanding of the capabilities of the "human actors" involved. We have taken the approach of providing each employee with a tool to manage at least a copy of their personal data aggregated from both enterprise systems as well as consumer oriented websites. This data can be analyzed, refined and edited before republishing it back to the enterprise. In this early alpha release we are demonstrating how to combine formal HR data with up-to-date LinkedIN profile data and how to make it searchable while also exposing a rich semantic graph API.
+        .container-fluid
+          .row-fluid
+            form.form-search
+              ul.connect
+                li
+                  strong LinkedIn
+                li
+                    a(href='/auth', onclick='return popuplinkedin()')
+                     button.btn.btn-mini.btn-primary(type='button') Download
+              div(style='clear: both;')
+              ul.connect
+                li
+                  strong GITHUB
+                li
+                  a(href='www.google.com')
+                    button.btn.btn-mini.btn-primary(type='button') Download
+              
+      hr
+      footer
+        p © 2012  Ericsson
+    // /container
+    //
+     
+    // Placed at the end of the document so the pages load faster
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')
+    script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap.min.js')

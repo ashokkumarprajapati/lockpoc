@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <!-- TODO: add bootstrap or boottheme generated css file beow -->
+    <!-- link href="boottheme.css" rel="stylesheet" type="text/css" /-->    
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+
+ 
+    <!-- Define Handlebar Templates -->
+
+    <script id="hero" type="text/x-handlebars-template">
+      <div class="span4">
+        <h1>Employee of the Day</h1>
+          <p>Here we (randomly) will highlight some local hero.</p>
+          <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+      </div>
+    </script>
+
+    <script id="features" type="text/x-handlebars-template">
+      <div class="span4">
+        <h2>Johan Sellström</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn" href="#">View details &raquo;</a></p>
+      </div>
+    </script>
+
+ 
+    <script id="thumb" type="text/x-handlebars-template">
+       <div class="span4">
+          <h2>Johan Sellström</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+
+    </script>
+
+    <script id="badge" type="text/x-handlebars-template">
+      <!--  Passbook Card -->
+      <div id="sc">
+        <div id="pc">
+        <div id="pass" class="pass" style="background-color: {{backgroundColor}} ; display: block; background-position: initial initial; background-repeat: initial initial;">
+        <!-- SVG Masks -->
+        <div class="couponTop"></div>
+        <div class="couponBottom"></div>
+        <div class="eventTicketTop"></div>
+        <div class="storeTop"></div>
+        <div class="boardingTop"></div>
+        <div class="genericTop"></div>
+        <img class="eventImage" src="badge/img/z.gif" alt="Background">
+        <!-- Graphics -->
+        <div class="passLogo foreground">
+          <img id="logoImage" src="badge/img/logo.png" alt="Logo">
+          <!-- <img src="images/z50.gif" alt="" class="z" /> -->
+          <p id="logoText">{{logoText}}</p>
+        </div>
+        <div id="transport" class="transport gen"></div>
+          <div class="back" style="background-image: url(badge/img/strip.png);"></div>
+          <div class="stripShine"></div>
+          <div class="thumbnail"><div class="tinner">
+            <img id="thumbnail" src="badge/img/thumbnail.png" alt="Thumbnail">
+          </div>
+        </div>
+        <span class="info"> </span>
+        <!-- Pass Fields -->
+        <!-- Header Row -->
+        <div class="header" id="header"  data-m="10" data-s="11">
+            <div class="field-labels">
+              <div id="h1L" class="field-label h1" style="width: 43px;padding-left:200px;margin-left: 0px; margin-right: 0px; display: block;">SCORE</div>
+              <div id="h2L" class="field-label h2" style="display: none;"></div>
+              <div id="h3L" class="field-label h3" style="display: none;"></div>
+            </div>
+            <div class="values">
+              <span id="h1V" class="foreground h1" style="width: 33px; padding-left:220px; margin-left: 0px; margin-right: 0px; display: block;">47</span>
+              <span id="h2V" class="foreground h2" style="display: none;"></span>
+              <span id="h3V" class="foreground h3" style="display: none;"></span>
+            </div>
+          </div>
+
+          <div id="fields" style="position:relative;top:120px;display:block;">
+          <div class="primary" id="primary" style="" data-m="0" data-s="25">
+            <div class="field-labels">
+              <div id="p1L" class="field-label p1" style="display: none; text-align: left; color: rgb(255, 255, 255);"></div>
+              <div id="p2L" class="field-label p2" style="display: none; text-align: left;"></div>
+            </div>
+            <div class="values">
+              <span id="p1V" class="foreground p1" style="display: none; text-align: left; color: rgb(255, 255, 255);"></span>
+              <span id="p2V" class="foreground p2" style="display: none; text-align: left;"></span>
+            </div>
+          </div>
+          <div class="secondary" id="secondary" data-m="14" data-s="10">
+            <div class="field-labels">
+              <div id="s1L" class="field-label s1" style="width: 72px;margin-left: 0px; margin-right: 0px; text-align: left;">MISSION</div>
+              <div id="s2L" class="field-label s2" style="width: 158px; text-align: right≈÷;">JOB</div>
+              <div id="s3L" class="field-label s3" style="display: none; text-align: left;"></div>
+              <div id="s4L" class="field-label s4" style="display: none; text-align: left;"></div>
+            </div>
+            <div class="values">
+              <span id="s1V" class="foreground s1" style="width: 72px; margin-left: 0px; margin-right: 0px; text-align: left;">BE NICE</span>
+              <span id="s2V" class="foreground s2" style="font-size: 14px; width: 158px; text-align: left;">CONCEPT DEVELOPER</span>
+              <span id="s3V" class="foreground s3" style="display: none; text-align: left;"></span><span id="s4V" class="foreground s4" style="display: none; text-align: left;"></span>
+            </div>
+          </div>
+          <div class="auxiliary" id="auxiliary" data-m="14" data-s="9">
+            <div class="field-labels">
+              <div id="a1L" class="field-label a1" style="width: 111px; margin-left: 0px; margin-right: 0px; text-align: left;">PROJECT</div>
+              <div id="a2L" class="field-label a2" style="display: none; text-align: left;"></div><div id="a3L" class="field-label a3" style="display: none; text-align: left;"></div>
+              <div id="a4L" class="field-label a4" style="display: none; text-align: left;"></div><div id="a5L" class="field-label a5" style="display: none; text-align: left;"></div>
+            </div>
+            <div class="values">
+              <span id="a1V" class="foreground a1" style="width: 111px; margin-left: 0px; margin-right: 0px; text-align: left;">WORK SMARTER</span>
+              <span id="a2V" class="foreground a2" style="display: none; text-align: left;"></span>
+              <span id="a3V" class="foreground a3" style="display: none; text-align: left;"></span>
+              <span id="a4V" class="foreground a4" style="display: none; text-align: left;"></span>
+              <span id="a5V" class="foreground a5" style="display: none; text-align: left;"></span>
+            </div>
+          </div>
+          </div>
+
+          <!-- Barcode -->
+          <div class="barcodeOuter">
+            <img id="footerImage" src="badge/img/z.gif" alt="Footer">
+            <div class="barcodeHack">
+
+              <div id="barcodeContainer" class="pdf417">
+                <div id="barcode">
+                  <img src="badge/img/barcode.png" alt="Barcode">
+                </div>
+                <p id="barcodeText">PassKit.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="back" class="pass animate backPass" style="background-color: {{backgroundColor}}; background-position: initial initial; background-repeat: initial initial;">
+
+          <!-- Masks -->
+          <div class="couponTop"></div>
+          <div class="storeTop"></div>
+          <img class="eventImage" src="badge/img/z.gif" alt="Background">
+          <p class="update label">never updated</p>
+          <button class="done label">Done</button>
+          <div class="backOuter">
+            <div class="backHack">
+              <div class="notify">
+                <div class="backInner">
+                  <fieldset class="toggle">
+                    <input id="tog1" type="checkbox" checked="checked">
+                    <label for="tog1">Automatic Updates</label>
+                    <span class="toggle-button"></span>
+                  </fieldset>
+                </div>
+              <p class="backNotice"></p>
+              </div>
+              <div class="lockScreen" style="">
+                <div class="backInner">
+                  <fieldset class="toggle">
+                    <input id="tog2" type="checkbox" checked="checked">
+                    <label for="tog2">Show On Lock Screen</label>
+                    <span class="toggle-button"></span>
+                  </fieldset>
+                </div>
+                <p class="backNotice">Show based on time or location.</p>
+              </div>
+              <div id="backContent" class="backInner">
+                <div id="b1"><div id="b1L" class="field-label b1" style="display: inline-block;">EMAIL</div>
+                <div id="b1V" class="foreground b1" style="display: inline-block; font-size: 15px;">johan.sellstrom@ericsson.com</div>
+                </div>
+                <div id="b2">
+                <div id="b2L" class="field-label b2" style="display: inline-block;">PHONE</div>
+                <div id="b2V" class="foreground b2" style="display: inline-block; font-size: 15px;">+46709756404</div>
+                </div>
+                <div id="b3">
+                <div id="b3L" class="field-label b3" style="display: inline-block;">OFFICE</div><div id="b3V" class="foreground b3" style="display: inline-block; font-size: 15px;">Isafjordsgatan 14E, 164 40 Kista, Kista 16440, Sweden</div>
+                </div>
+                <div id="b4">
+                <div id="b4L" class="field-label b4" style="">CURRENT JOB ROLE</div>
+                <div id="b4V" class="foreground b4" style="font-size: 15px;">Systems Architect</div>
+                </div>  
+              </div>
+            </div>
+          </div>
+          <!-- End Pass Back Face -->
+        </div>
+        <!-- End Pass Container -->
+      </div>
+      </div>
+
+    </script>
+
+    <link rel="stylesheet" href="visualsearch/build-min/visualsearch-datauri.css" type="text/css" media="screen" charset="utf-8">
+
+    <script src="visualsearch/build-min/dependencies.js" type="text/javascript" charset="utf-8"></script>
+    <script src="visualsearch/build-min/visualsearch.js" type="text/javascript" charset="utf-8"></script>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">LOCKBOX</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li class="dropdown">
+                <a data-target="#" class="dropdown-toggle" data-toggle="dropdown">System X <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <!--li><a href="#">Platform</a></li-->
+                  <li><a href="search.html">Search</a></li>
+                  <!--li><a href="#">Drivels</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Other</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li-->
+                </ul>
+              </li>
+            </ul>
+            <!-- form class="navbar-form pull-right">
+
+              <input class="span2" type="text" placeholder="Email">
+              <input class="span2" type="password" placeholder="Password">
+              <button type="submit" class="btn">Sign in</button>
+
+            </form -->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+<form class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="inputEmail">Email</label>
+    <div class="controls">
+      <input type="text" id="inputEmail" placeholder="Email">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Password</label>
+    <div class="controls">
+      <input type="password" id="inputPassword" placeholder="Password">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <label class="checkbox">
+        <input type="checkbox"> Remember me
+      </label>
+      <button type="submit" class="btn">Sign in</button>
+    </div>
+  </div>
+</form>
+
+
+      <hr>
+
+      <footer>
+        <p>&copy; Ericsson Group India 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>    
+    <script src="js/handlebars.js"></script>
+
+    <script type="text/javascript">
+      // Compile all our templates
+      var thumbTemplate = Handlebars.compile($("#thumb").html());
+      var badgeTemplate = Handlebars.compile($("#badge").html());
+      //var $results = $('#results');
+      //badge=template(pass);
+
+    </script>
+
+<script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+        var visualSearch = VS.init({
+          container  : $('#search_box_container'),
+          query      : 'country: "United States" "U.S. State": "New York" account: 5-samuel',
+          showFacets : true,
+          unquotable : [
+            'text',
+            'account',
+            'filter',
+            'access'
+          ],
+          callbacks  : {
+            search : function(query, searchCollection) {
+              var $query = $('#search_query');
+              var count  = searchCollection.size();
+              $query.stop().animate({opacity : 1}, {duration: 300, queue: false});
+              $query.html('<span class="raquo">&raquo;</span> You searched for: ' +
+                          '<b>' + (query || '<i>nothing</i>') + '</b>. ' +
+                          '(' + count + ' facet' + (count==1 ? '' : 's') + ')');
+              clearTimeout(window.queryHideDelay);
+              window.queryHideDelay = setTimeout(function() {
+                $query.animate({
+                  opacity : 0
+                }, {
+                  duration: 1000,
+                  queue: false
+                });
+              }, 2000);
+            },
+            facetMatches : function(callback) {
+              callback([
+                'account', 'filter', 'access', 'title',
+                { label: 'city',       category: 'location' },
+                { label: 'country',    category: 'location' },
+                { label: 'U.S. State', category: 'location' },
+              ]);
+            },
+            valueMatches : function(facet, searchTerm, callback) {
+              switch (facet) {
+              case 'account':
+                  callback([
+                    { value: '1-amanda', label: 'Amanda' },
+                    { value: '2-aron',   label: 'Aron' },
+                    { value: '3-eric',   label: 'Eric' },
+                    { value: '4-jeremy', label: 'Jeremy' },
+                    { value: '5-samuel', label: 'Samuel' },
+                    { value: '6-scott',  label: 'Scott' }
+                  ]);
+                  break;
+                case 'filter':
+                  callback(['published', 'unpublished', 'draft']);
+                  break;
+                case 'access':
+                  callback(['public', 'private', 'protected']);
+                  break;
+                case 'title':
+                  callback([
+                    'Pentagon Papers',
+                    'CoffeeScript Manual',
+                    'Laboratory for Object Oriented Thinking',
+                    'A Repository Grows in Brooklyn'
+                  ]);
+                  break;
+                case 'city':
+                  callback([
+                    'Cleveland',
+                    'New York City',
+                    'Brooklyn',
+                    'Manhattan',
+                    'Queens',
+                    'The Bronx',
+                    'Staten Island',
+                    'San Francisco',
+                    'Los Angeles',
+                    'Seattle',
+                    'London',
+                    'Portland',
+                    'Chicago',
+                    'Boston'
+                  ]);
+                  break;
+                case 'U.S. State':
+                  callback([
+                    "Alabama", "Alaska", "Arizona", "Arkansas", "California",
+                    "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida",
+                    "Georgia", "Guam", "Hawaii", "Idaho", "Illinois",
+                    "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
+                    "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
+                    "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
+                    "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina",
+                    "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania",
+                    "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee",
+                    "Texas", "Utah", "Vermont", "Virginia", "Virgin Islands",
+                    "Washington", "West Virginia", "Wisconsin", "Wyoming"
+                  ]);
+                  break;
+                case 'country':
+                  callback([
+                    "China", "India", "United States", "Indonesia", "Brazil",
+                    "Pakistan", "Bangladesh", "Nigeria", "Russia", "Japan",
+                    "Mexico", "Philippines", "Vietnam", "Ethiopia", "Egypt",
+                    "Germany", "Turkey", "Iran", "Thailand", "D. R. of Congo",
+                    "France", "United Kingdom", "Italy", "Myanmar", "South Africa",
+                    "South Korea", "Colombia", "Ukraine", "Spain", "Tanzania",
+                    "Sudan", "Kenya", "Argentina", "Poland", "Algeria",
+                    "Canada", "Uganda", "Morocco", "Iraq", "Nepal",
+                    "Peru", "Afghanistan", "Venezuela", "Malaysia", "Uzbekistan",
+                    "Saudi Arabia", "Ghana", "Yemen", "North Korea", "Mozambique",
+                    "Taiwan", "Syria", "Ivory Coast", "Australia", "Romania",
+                    "Sri Lanka", "Madagascar", "Cameroon", "Angola", "Chile",
+                    "Netherlands", "Burkina Faso", "Niger", "Kazakhstan", "Malawi",
+                    "Cambodia", "Guatemala", "Ecuador", "Mali", "Zambia",
+                    "Senegal", "Zimbabwe", "Chad", "Cuba", "Greece",
+                    "Portugal", "Belgium", "Czech Republic", "Tunisia", "Guinea",
+                    "Rwanda", "Dominican Republic", "Haiti", "Bolivia", "Hungary",
+                    "Belarus", "Somalia", "Sweden", "Benin", "Azerbaijan",
+                    "Burundi", "Austria", "Honduras", "Switzerland", "Bulgaria",
+                    "Serbia", "Israel", "Tajikistan", "Hong Kong", "Papua New Guinea",
+                    "Togo", "Libya", "Jordan", "Paraguay", "Laos",
+                    "El Salvador", "Sierra Leone", "Nicaragua", "Kyrgyzstan", "Denmark",
+                    "Slovakia", "Finland", "Eritrea", "Turkmenistan"
+                  ], {preserveOrder: true});
+                  break;
+              }
+            }
+          }
+        });
+      });
+    </script>
+
+
+  </body>
+</html>

@@ -1,0 +1,28 @@
+!!! transitional
+html(xmlns='http://www.w3.org/1999/xhtml')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    title LockBox Login
+    link(type='text/css', rel='stylesheet', href='css/style.css')
+    // HTML5 shim, for IE6-8 support of HTML5 elements
+    //if lt IE 9
+      script(src='js/html5.js')
+  body
+    header
+      img(src='images/logo.jpg')
+    figure.eGB  
+    section
+      .login-section
+        .login
+          form#searchform(method='post')
+            ul
+              li#search.widgetcontainer.widget_thematic_search
+                div
+                  input#a(name='username', type='text', value='Login', onfocus='if (this.value == "Login") {this.value = "";}', onblur='if (this.value == "") {this.value = "Login";}', size='32', tabindex='1')
+              li#search.widgetcontainer.widget_thematic_search
+                div
+                  input#b(name='password', type='password', value='Password', onfocus='if (this.value == "Password") {this.value = "";}', onblur='if (this.value == "") {this.value = "Password";}', size='32', tabindex='1')
+              li
+                input(name='', type='submit', value='Login Now')
+    footer.eGB
+      | Copyright © 2012

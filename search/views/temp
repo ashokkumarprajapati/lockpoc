@@ -1,0 +1,274 @@
+app.get('/publish', function (req, res) {
+	console.log("publishing...");	
+	var location = __dirname + '/profiles/' + req.session.user + '/profile.json';
+	console.log("location"+location);
+	fs.readFile(location, function (err, data) {
+  		if (err) {
+  			res.send(err);
+  		} else {
+  			data = JSON.parse(data);
+  			db.insert(data, function(err, body) {
+  				if (err) {
+    				res.send(err);
+    				console.log(err);
+    			} else {
+					data._rev = body.rev;
+					fs.writeFile(location, JSON.stringify(data));
+    				console.log("published!");
+            		res.send({result: 'success'});
+    			}
+			});
+  		}
+	});
+});
+
+app.get('/', routes.index);
+
+app.get('/authed', function (req, res) {
+	linkedin_connector.pullProfile(req, res);
+});
+
+app.get('/auth', function (req, res) {
+  // the first time will redirect to linkedin
+  linkedin_client.getAccessToken(req, res, function (error, token) {
+    // will enter here when coming back from linkedin
+    if (!error)
+    {
+      console.log('saving token '+token);
+      req.session.token = token;
+      console.log("inside the authed");
+      res.redirect('/authed');
+   } else
+      res.render('error',{ error: error });
+  });
+});
+
+app.post('/message', function (req, res) {
+  linkedin_client.apiCall('POST', '/people/~/shares',
+    {
+      token: {
+        oauth_token_secret: req.session.token.oauth_token_secret
+      , oauth_token: req.session.token.oauth_token
+      }
+    , share: {
+        comment: req.param('message')
+      , visibility: {code: 'anyone'}
+      }
+    }
+  , function (error, result) {
+      res.render('message_sent');
+    }
+  );
+});
+
+
+app.get('/login', function(req,res){
+   res.render('login',{error :'Please login'});
+});
+
+app.get('/connect', function(req,res){
+   res.render('connect',{username :req.session.user});
+});
+
+app.get('/profile', function(req,res){
+	//setPicurl();
+	
+	var location = __dirname + '/profiles/' + req.session.user + '/profile.json';
+	fs.readFile(location, function (err, data) {
+  		if (err) {
+  			console.log("Error in reading profile !!!");
+  			res.send(err);
+  		} else {
+  			var profile = JSON.parse(data);
+  			res.render('profile', {profile: profile, url: picurl, username: req.session.user});
+  		}
+  	});
+
+	function setPicurl(){
+		var url = configObj.imagedb.url + configObj.imagedb.schema + '/' + configObj.imagedb._design_view + '?key="' + req.session.user + '"';
+		var data = '';
+		http.get(url, function(res) {
+			res.on('data', function(chunk) {
+       			data += chunk;
+			});   		
+   			res.on('end', onwards);   		
+   		}).on('error', function(e) {
+  		console.log("got error: " + e.message);	});
+  	
+  		function onwards() {
+  			data = JSON.parse(data);
+			console.log('data.rows[0] after running query: '+data.rows[0]);
+			if (data.rows[0]) {
+				var docid = data.rows[0].value;
+				picurl = configObj.imagedb.url+configObj.imagedb.schema+"/"+docid+"/profilepic.jpg"; 			
+			} else {
+				picurl = '';
+			}
+		}
+	}    	
+});
+
+app.get('/failed',function(req,res){
+   res.render('failed');
+});
+
+app.get('/logout',function(req,res){
+   res.redirect('/');
+});
+
+app.post('/',function(req,res){
+    userName = req.body.username;
+        
+    // setting user in session
+    req.session.user = userName;    
+    
+    jsonObject = JSON.stringify({
+    "username" : req.body.username,
+    "password" : req.body.password
+    });
+        
+    var post_options = {
+      host: configObj.login.host,
+      port: configObj.login.port,
+      path: configObj.login.path,
+      method: configObj.login.method,
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+      }
+    };
+    var post_req = http.request(post_options, function(resp) {
+      //res.setEncoding('utf8');
+      console.log("inside the request");
+      resp.on('data', function (chunk) {
+          console.log('Response: ' + chunk);
+          authenticate = JSON.parse(chunk);
+          if(authenticate.authDone) {
+            res.render('connect',{username :req.session.user});
+          }
+          else {
+           // res.render('login'),;
+           res.render('login', { error:'Username or Password is incorrect' });
+          }
+
+       });
+    });
+   // post the data
+   post_req.write(jsonObject);
+   post_req.end();
+});
+
+app.post('/login',function(req,res){
+    userName = req.body.username;
+    
+    // setting user in session
+    req.session.user = userName;
+    
+    jsonObject = JSON.stringify({
+    "username" : req.body.username,
+    "password" : req.body.password
+    });
+    
+    var post_options = {
+      host: configObj.login.host,
+      port: configObj.login.port,
+      path: configObj.login.path,
+      method: configObj.login.method,
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+      }
+    };
+    var post_req = http.request(post_options, function(resp) {
+      //res.setEncoding('utf8');
+      console.log("inside the request");
+      resp.on('data', function (chunk) {
+          console.log('Response: ' + chunk);
+          authenticate = JSON.parse(chunk);
+          if(authenticate.authDone) {
+            res.render('connect',{username :req.session.user});
+          }
+          else {
+           res.render('login', { error:'Username or Password is incorrect' });
+          }
+
+       });
+    });
+   // post the data
+   post_req.write(jsonObject);
+   post_req.end();
+});
+
+
+app.get('/upload', function(req,res){
+
+res.render('upload/file', {error: ''});
+
+});
+
+
+app.post('/uploadComplete', function(req,res){
+
+console.log('userName is: '+ req.session.user);
+
+var url = configObj.imagedb.url + configObj.imagedb.schema + '/' + configObj.imagedb._design_view + '?key="' + req.session.user + '"';
+	var data = '';
+	var data2 = '';
+	var body2 = '';
+	http.get(url, function(res) {
+		res.on('data', function(chunk) {
+       		data += chunk;	
+   		});   		
+   		res.on('end', next);   		
+   	}).on('error', function(e) {
+  		console.log("got error: " + e.message);	});
+  	
+  	function next() {
+  		data = JSON.parse(data);
+		if (data.rows[0])
+		{	var docid = data.rows[0].id;
+			getNupload(docid);			
+		}
+		else
+		{	console.log('No previous image found for '+ req.session.user +'. Creating new document for storing image.');
+			url = configObj.imagedb.url + "_uuids";
+			http.get(url, function(res) {		//flag!
+			res.on('data', function(chunk) {
+	       		data2 += chunk;	
+	   		});   		
+	   		res.on('end', function(){
+				docid = JSON.parse(data2);
+    				console.log('docid.uuids[0]: '+docid.uuids[0]);
+				imagedb.insert({ username: req.session.user }, docid.uuids[0], function(err, body) {
+  					if (!err)
+					{ console.log('New document created: '+body);
+					  getNupload(docid.uuids[0]);					
+					}
+				});	//end of imagedb.insert
+			});	//end of res.on(end)
+			});	//end of http.get (with the flag!)
+		}	
+	
+res.render('upload/uploadComplete');
+}	//end of next()
+
+
+function getNupload(docid){
+imagedb.get(docid, {}, function(err, body) {
+                	if(err) console.log('Error in imagedb.get inside getNupload: '+err);
+                	if (!err)
+    			{ console.log(body);
+      			  fs.readFile(req.files.filename.path, function(err, data) {
+  			  if (!err) {
+    imagedb.attachment.insert(docid, 'profilepic.jpg', data, 'image/png', { rev: body._rev }, function(err, body) {
+        	if (!err)
+                console.log('Attachment successfully uploaded: '+body);
+	        else console.log('Error in attachment.insert: '+err);
+    });
+  			  }
+			  });	//end of fs.readFile
+    			}
+  			});	//end of imagedb.get 
+}	//end of getNupload
+
+});

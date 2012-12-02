@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link rel='stylesheet' href='/css/bootstrap.css'>
+  <link rel='stylesheet' href='/css/bootstrap-responsive.css'>
+  <link rel='stylesheet' href='/css/style.css'>
+  <link rel='stylesheet' href='css/visualsearch.css'>
+  <link rel='stylesheet' href='css/visualsearch-datauri.css'>
+
+  {{{block "stylesheets"}}}
+</head>
+
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#"><img src="/img/favicon.ico">&nbsp;PROFILES&nbsp;&nbsp;</a>
+          <!-- <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-user"></i> Username
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Sign Out</a></li>
+            </ul>
+          </div> -->
+          <div class="btn  pull-left"><span class="icon-bar"></span></div>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="#about">About</a></li>
+              <li class="dropdown">
+                <a data-target="#" class="dropdown-toggle" data-toggle="dropdown">System X <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://localhost:8021">LockBox</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+          <div class="navbar-search pull-left" style="min-width:310px;" id="search_box_container"></div>  
+        </div>
+      </div>
+    {{{body}}}
+  </div> <!-- /container -->
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/dependencies.js"></script>
+  <script src="/js/visualsearch.js"></script>
+  <script type="text/javascript" charset="utf-8">
+
+$(document).ready(function () {
+
+  function do_search(facets) {
+    var query = "";
+    var data = "{";
+    var counter = 1;
+    for (var i in facets) {
+      var innerObj = facets[i];
+      for (var key in innerObj) {
+        data += "\"" + key + "\":\"" + innerObj[key] + "\"";
+        //
+        if (key == "text") {
+          query += "_all:" + innerObj[key].toLowerCase() + " ";
+        } else if (key == "role") {
+          query += "linkedin.positions.values.title:" + innerObj[key].toLowerCase() + " ";
+        } else if (key == "country") {
+          query = query + "linkedin.location.name:" + innerObj[key].toLowerCase() + " " +
+			"sap.Location:" + innerObj[key].toLowerCase() + " ";
+        } else if (key == "skill") {
+          query = query + "linkedin.skills.values.skill.name:" + innerObj[key].toLowerCase() + " ";
+        }
+
+      }
+      if (counter < facets.length) {
+        data += ",";
+      }
+      counter++;
+    }
+    data += "}";
+
+    //console.log("data");
+    //console.log(data);
+
+
+    qdata = JSON.stringify({
+      "fields": ["_source.linkedin.headline", "_source.linkedin.firstName", "_source.linkedin.lastName",
+        "_source.linkedin.pictureUrl", "_source.sap.Location","_source.sap.Name","_source.sap['Emp Code']","_source.sap['Position Name']"],
+        "query": {
+        "query_string": {
+          "query": query
+        }
+      }
+    });
+
+    //         console.log("qdata");
+    //         console.log(qdata);
+
+    $.ajax({
+      url: 'http://lockbox.egi.ericsson.com:9200/lockpoc/profiles/_search?analyzer=auto_complete&pretty=true',
+      type: 'POST',
+      data: qdata,
+      dataType: 'json',
+      processData: false,
+      success: function (data, statusText, xhr) {
+
+        var hits = data.hits.hits;
+        var htmlContent = "";
+        for (var i in hits) {
+          var profileUrl = 'http://statsdsxs.egi.ericsson.com:8084/#/' + hits[i]._id;
+          var fields = hits[i].fields;
+          if (fields) {
+
+            if (fields["_source.linkedin.pictureUrl"]) image = fields["_source.linkedin.pictureUrl"].value;
+            else image = "img/hans_vestberg_175x175.jpg";
+
+            if (fields["_source.linkedin.firstName"].value) name = fields["_source.linkedin.firstName"].value;
+            else name = "";
+
+            if (fields["_source.linkedin.lastName"].value) name += " " + fields["_source.linkedin.lastName"].value;
+
+            if (fields["_source.linkedin.headline"]) headline = fields["_source.linkedin.headline"].value;
+            else headline = "";
+
+            if (fields["_source.sap.Location"]) loc = fields["_source.sap.Location"];
+            else loc = "";
+
+
+            htmlContent += '<div class="span2 thumbnail" style="max-height:250px;">' +
+              '<a href="' + profileUrl + '" target="_top" >' +
+              '<img src="' + image + '"  width="175" height="175">' +
+              '</a> <h3>' +
+              '<a href="' + profileUrl + '" class="" title="View Profile" target="_top">' + name +
+              '</a></h3> <b>Title: </b> ' + headline + '' +
+              '<p><b>Location: </b>' + loc + '' + '</p></div>';
+          }
+        }
+        $('div#search-results')
+          .html(htmlContent);
+      },
+      error: function (xhr, message, error) {
+        console.error("Error in search", message);
+        $('div#search-results')
+          .html(message);
+        throw (error);
+      }
+    });
+  }
+
+  window.visualSearch = VS.init({
+    container: $('#search_box_container'),
+    query: '',
+    unquotable: [
+      'text',
+      'filter'],
+    callbacks: {
+      search: function (query, searchCollection) {
+
+        if (searchCollection.facets() != '') {
+          do_search(searchCollection.facets());
+          //$query.stop().animate({opacity : 1}, {duration: 300, queue: false});
+          //$query.html('<span class="raquo">&raquo;</span> You searched for: <b>' + searchCollection.serialize() + '</b>'); 
+        } else {
+          $('div#search-results')
+            .html('');
+        }
+
+      },
+      valueMatches: function (category, searchTerm, callback) {
+        switch (category) {
+          case 'name':
+            break;
+          case 'role':
+            $.ajax({
+              url: 'http://lockbox.egi.ericsson.com:9200/lockpoc/profiles/_search?pretty=true',
+              type: 'POST',
+              data: JSON.stringify({
+                "query": {
+                  "match_all": {}
+                },
+                  "fields": [],
+                  "facets": {
+                  "roles": {
+                    "terms": {
+                      "fields": ["linkedin.positions.values.title.untouched","sap['Position Name']"],
+                        "size": "10"
+                    }
+                  }
+                }
+              }),
+              dataType: 'json',
+              processData: false,
+              success: function (data, statusText, xhr) {
+                var roles = [];
+                for (var i in data.facets.roles.terms) {
+                  roles.push(data.facets.roles.terms[i].term);
+                }
+                callback(roles, {
+                  preserveOrder: true
+                });
+              },
+              error: function (xhr, message, error) {
+                console.error("Error while loading data from ElasticSearch", message);
+                $('div#search-results')
+                  .html(error);
+                throw (error);
+              }
+            });
+            break;
+          case 'tag':
+            break;
+          case 'skill':
+            $.ajax({
+              url: 'http://lockbox.egi.ericsson.com:9200/lockpoc/profiles/_search?pretty=true',
+              type: 'POST',
+              data: JSON.stringify({
+                "query": {
+                  "match_all": {}
+                },
+                  "fields": [],
+                  "facets": {
+                  "skills": {
+                    "terms": {
+                      "field": "linkedin.skills.values.skill.name.untouched",
+                        "size": "10"
+                    }
+                  }
+                }
+              }),
+              dataType: 'json',
+              processData: false,
+              success: function (data, statusText, xhr) {
+                var skills = [];
+                for (var i in data.facets.skills.terms) {
+                  skills.push(data.facets.skills.terms[i].term);
+                }
+                callback(skills, {
+                  preserveOrder: true
+                });
+              },
+              error: function (xhr, message, error) {
+                console.error("Error while loading data from ElasticSearch", message);
+                $('div#search-results')
+                  .html(error);
+                throw (error);
+              }
+            });
+            break;
+          case 'title':
+
+            break;
+          case 'country':
+            $.ajax({
+              url: 'http://lockbox.egi.ericsson.com:9200/lockpoc/profiles/_search?pretty=true',
+              type: 'POST',
+              data: JSON.stringify({
+                "query": {
+                  "match_all": {}
+                },
+                  "fields": [],
+                  "facets": {
+                  "location": {
+                    "terms": {
+                      "field": ["linkedin.location.name.untouched","sap.Location"],
+                        "size": "10"
+                    }
+                  }
+                }
+              }),
+              dataType: 'json',
+              processData: false,
+              success: function (data, statusText, xhr) {
+                var country = [];
+                for (var i in data.facets.location.terms) {
+                  country.push(data.facets.location.terms[i].term);
+                }
+                callback(country, {
+                  preserveOrder: true
+                });
+              },
+              error: function (xhr, message, error) {
+                console.error("Error while loading data from ElasticSearch", message);
+                $('div#search-results')
+                  .html(error);
+                throw (error);
+              }
+            });
+            break;
+        }
+      },
+      facetMatches: function (callback) {
+        callback([
+          'skill', 'role', 'country']);
+      }
+    }
+  });
+});
+
+</script>
+
+  {{{block "scripts"}}}
+</body>
+</html>

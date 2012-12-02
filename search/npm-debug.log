@@ -1,0 +1,206 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'nodejs', '/usr/bin/npm', 'install', 'express' ]
+2 info using npm@1.1.59
+3 info using node@v0.8.9
+4 verbose read json /home/eimnpqb/alpha/search/package.json
+5 warn package.json search@0.0.1 No README.md file found!
+6 verbose read json /home/eimnpqb/alpha/search/node_modules/nano/package.json
+7 verbose read json /home/eimnpqb/alpha/search/node_modules/npm/package.json
+8 verbose read json /home/eimnpqb/alpha/search/node_modules/hbs/package.json
+9 verbose read json /home/eimnpqb/alpha/search/node_modules/express/package.json
+10 verbose read json /home/eimnpqb/alpha/search/node_modules/jquery/package.json
+11 verbose from cache /home/eimnpqb/alpha/search/package.json
+12 verbose readDependencies using package.json deps
+13 verbose cache add [ 'express@*', null ]
+14 silly cache add name=undefined spec="express@*" args=["express@*",null]
+15 verbose parsed url { pathname: 'express@*', path: 'express@*', href: 'express@*' }
+16 silly cache add name="express" spec="*" args=["express","*"]
+17 verbose parsed url { pathname: '*', path: '*', href: '*' }
+18 verbose addNamed [ 'express', '*' ]
+19 verbose addNamed [ null, '' ]
+20 silly lockFile 8ad1ad64-express express@*
+21 verbose lock express@* /home/eimnpqb/.npm/8ad1ad64-express.lock
+22 silly addNameRange { name: 'express', range: '', hasData: false }
+23 verbose url raw express
+24 verbose url resolving [ 'https://registry.npmjs.org/', './express' ]
+25 verbose url resolved https://registry.npmjs.org/express
+26 info retry registry request attempt 1 at 16:13:22
+27 verbose etag "80GGDHAP6X4OEPTNFCPEV8S72"
+28 http GET https://registry.npmjs.org/express
+29 http 304 https://registry.npmjs.org/express
+30 silly registry.get cb [ 304,
+30 silly registry.get   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+30 silly registry.get     etag: '"80GGDHAP6X4OEPTNFCPEV8S72"',
+30 silly registry.get     date: 'Sun, 02 Dec 2012 10:42:44 GMT',
+30 silly registry.get     'content-length': '0' } ]
+31 verbose etag express from cache
+32 silly addNameRange number 2 { name: 'express', range: '', hasData: true }
+33 silly addNameRange versions [ 'express',
+33 silly addNameRange   [ '0.14.0',
+33 silly addNameRange     '0.14.1',
+33 silly addNameRange     '1.0.0beta',
+33 silly addNameRange     '1.0.0beta2',
+33 silly addNameRange     '1.0.0rc',
+33 silly addNameRange     '1.0.0rc2',
+33 silly addNameRange     '1.0.0rc3',
+33 silly addNameRange     '1.0.0rc4',
+33 silly addNameRange     '1.0.0',
+33 silly addNameRange     '1.0.1',
+33 silly addNameRange     '1.0.2',
+33 silly addNameRange     '1.0.3',
+33 silly addNameRange     '1.0.4',
+33 silly addNameRange     '1.0.5',
+33 silly addNameRange     '1.0.6',
+33 silly addNameRange     '1.0.7',
+33 silly addNameRange     '2.0.0beta',
+33 silly addNameRange     '1.0.8',
+33 silly addNameRange     '2.0.0beta2',
+33 silly addNameRange     '2.0.0beta3',
+33 silly addNameRange     '2.0.0rc',
+33 silly addNameRange     '2.0.0rc2',
+33 silly addNameRange     '2.0.0rc3',
+33 silly addNameRange     '2.0.0',
+33 silly addNameRange     '2.1.0',
+33 silly addNameRange     '2.1.1',
+33 silly addNameRange     '2.2.0',
+33 silly addNameRange     '2.2.1',
+33 silly addNameRange     '2.2.2',
+33 silly addNameRange     '2.3.0',
+33 silly addNameRange     '2.3.1',
+33 silly addNameRange     '2.3.2',
+33 silly addNameRange     '2.3.3',
+33 silly addNameRange     '2.3.4',
+33 silly addNameRange     '2.3.5',
+33 silly addNameRange     '2.3.6',
+33 silly addNameRange     '2.3.7',
+33 silly addNameRange     '2.3.8',
+33 silly addNameRange     '2.3.9',
+33 silly addNameRange     '2.3.10',
+33 silly addNameRange     '2.3.11',
+33 silly addNameRange     '2.3.12',
+33 silly addNameRange     '2.4.0',
+33 silly addNameRange     '2.4.1',
+33 silly addNameRange     '2.4.2',
+33 silly addNameRange     '2.4.3',
+33 silly addNameRange     '2.4.4',
+33 silly addNameRange     '2.4.5',
+33 silly addNameRange     '2.4.6',
+33 silly addNameRange     '2.4.7',
+33 silly addNameRange     '2.5.0',
+33 silly addNameRange     '2.5.1',
+33 silly addNameRange     '2.5.2',
+33 silly addNameRange     '2.5.3',
+33 silly addNameRange     '2.5.4',
+33 silly addNameRange     '2.5.5',
+33 silly addNameRange     '2.5.6',
+33 silly addNameRange     '2.5.7',
+33 silly addNameRange     '2.5.8',
+33 silly addNameRange     '2.5.9',
+33 silly addNameRange     '3.0.0alpha1',
+33 silly addNameRange     '3.0.0alpha2',
+33 silly addNameRange     '3.0.0alpha3',
+33 silly addNameRange     '3.0.0alpha4',
+33 silly addNameRange     '3.0.0alpha5',
+33 silly addNameRange     '3.0.0beta1',
+33 silly addNameRange     '3.0.0beta2',
+33 silly addNameRange     '3.0.0beta3',
+33 silly addNameRange     '2.5.10',
+33 silly addNameRange     '3.0.0beta4',
+33 silly addNameRange     '2.5.11',
+33 silly addNameRange     '3.0.0beta6',
+33 silly addNameRange     '3.0.0beta7',
+33 silly addNameRange     '3.0.0rc1',
+33 silly addNameRange     '3.0.0rc2',
+33 silly addNameRange     '3.0.0rc3',
+33 silly addNameRange     '3.0.0rc4',
+33 silly addNameRange     '3.0.0rc5',
+33 silly addNameRange     '3.0.0',
+33 silly addNameRange     '3.0.1',
+33 silly addNameRange     '3.0.2',
+33 silly addNameRange     '3.0.3' ] ]
+34 verbose addNamed [ 'express', '3.0.3' ]
+35 verbose addNamed [ '3.0.3', '3.0.3' ]
+36 silly lockFile 96ff5894-express-3-0-3 express@3.0.3
+37 verbose lock express@3.0.3 /home/eimnpqb/.npm/96ff5894-express-3-0-3.lock
+38 verbose read json /home/eimnpqb/.npm/express/3.0.3/package/package.json
+39 silly lockFile 96ff5894-express-3-0-3 express@3.0.3
+40 silly lockFile 8ad1ad64-express express@*
+41 silly resolved [ { name: 'express',
+41 silly resolved     description: 'Sinatra inspired web development framework',
+41 silly resolved     version: '3.0.3',
+41 silly resolved     author: { name: 'TJ Holowaychuk', email: 'tj@vision-media.ca' },
+41 silly resolved     contributors: [ [Object], [Object], [Object], [Object] ],
+41 silly resolved     dependencies:
+41 silly resolved      { connect: '2.7.0',
+41 silly resolved        commander: '0.6.1',
+41 silly resolved        'range-parser': '0.0.4',
+41 silly resolved        mkdirp: '0.3.3',
+41 silly resolved        cookie: '0.0.5',
+41 silly resolved        crc: '0.2.0',
+41 silly resolved        fresh: '0.1.0',
+41 silly resolved        methods: '0.0.1',
+41 silly resolved        send: '0.1.0',
+41 silly resolved        'cookie-signature': '0.0.1',
+41 silly resolved        debug: '*' },
+41 silly resolved     devDependencies:
+41 silly resolved      { ejs: '*',
+41 silly resolved        mocha: '*',
+41 silly resolved        jade: '*',
+41 silly resolved        hjs: '*',
+41 silly resolved        stylus: '*',
+41 silly resolved        should: '*',
+41 silly resolved        'connect-redis': '*',
+41 silly resolved        'github-flavored-markdown': '*',
+41 silly resolved        supertest: '0.0.1' },
+41 silly resolved     keywords:
+41 silly resolved      [ 'express',
+41 silly resolved        'framework',
+41 silly resolved        'sinatra',
+41 silly resolved        'web',
+41 silly resolved        'rest',
+41 silly resolved        'restful',
+41 silly resolved        'router',
+41 silly resolved        'app',
+41 silly resolved        'api' ],
+41 silly resolved     repository: { type: 'git', url: 'git://github.com/visionmedia/express' },
+41 silly resolved     main: 'index',
+41 silly resolved     bin: { express: './bin/express' },
+41 silly resolved     scripts: { prepublish: 'npm prune', test: 'make test' },
+41 silly resolved     engines: { node: '*' },
+41 silly resolved     readme: '![express logo](http://f.cl.ly/items/0V2S1n0K1i3y1c122g04/Screen%20Shot%202012-04-11%20at%209.59.42%20AM.png)\n\n  Fast, unopinionated, minimalist web framework for [node](http://nodejs.org). [![Build Status](https://secure.travis-ci.org/visionmedia/express.png)](http://travis-ci.org/visionmedia/express)\n\n```js\nvar express = require(\'express\');\nvar app = express();\n\napp.get(\'/\', function(req, res){\n  res.send(\'Hello World\');\n});\n\napp.listen(3000);\n```\n\n## Installation\n\n    $ npm install -g express\n\n## Quick Start\n\n The quickest way to get started with express is to utilize the executable `express(1)` to generate an application as shown below:\n\n Create the app:\n\n    $ npm install -g express\n    $ express /tmp/foo && cd /tmp/foo\n\n Install dependencies:\n\n    $ npm install\n\n Start the server:\n\n    $ node app\n\n## Features\n\n  * Built on [Connect](http://github.com/senchalabs/connect)\n  * Robust routing\n  * HTTP helpers (redirection, caching, etc)\n  * View system supporting 14+ template engines\n  * Content negotiation\n  * Focus on high performance\n  * Environment based configuration\n  * Executable for generating applications quickly\n  * High test coverage\n\n## Philosophy\n\n  The Express philosophy is to provide small, robust tooling for HTTP servers. Making\n  it a great solution for single page applications, web sites, hybrids, or public\n  HTTP APIs.\n  \n  Built on Connect you can use _only_ what you need, and nothing more, applications\n  can be as big or as small as you like, even a single file. Express does\n  not force you to use any specific ORM or template engine. With support for over\n  14 template engines via [Consolidate.js](http://github.com/visionmedia/consolidate.js)\n  you can quickly craft your perfect framework.\n\n## More Information\n\n  * Join #express on freenode\n  * [Google Group](http://groups.google.com/group/express-js) for discussion\n  * Follow [tjholowaychuk](http://twitter.com/tjholowaychuk) on twitter for updates\n  * Visit the [Wiki](http://github.com/visionmedia/express/wiki)\n  * [日本語ドキュメンテーション](http://hideyukisaito.com/doc/expressjs/) by [hideyukisaito](https://github.com/hideyukisaito)\n  * [Русскоязычная документация](http://express-js.ru/)\n\n## Viewing Examples\n\nClone the Express repo, then install the dev dependencies to install all the example / test suite deps:\n\n    $ git clone git://github.com/visionmedia/express.git --depth 1\n    $ cd express\n    $ npm install\n\nthen run whichever tests you want:\n\n    $ node examples/content-negotiation\n\n## Running Tests\n\nTo run the test suite first invoke the following command within the repo, installing the development dependencies:\n\n    $ npm install\n\nthen run the tests:\n\n    $ make test\n\n## Contributors\n\n```\nproject: express\ncommits: 3559\nactive : 468 days\nfiles  : 237\nauthors: \n 1891\tTj Holowaychuk          53.1%\n 1285\tvisionmedia             36.1%\n  182\tTJ Holowaychuk          5.1%\n   54\tAaron Heckmann          1.5%\n   34\tcsausdev                1.0%\n   26\tciaranj                 0.7%\n   21\tRobert Sköld            0.6%\n    6\tGuillermo Rauch         0.2%\n    3\tDav Glass               0.1%\n    3\tNick Poulden            0.1%\n    2\tRandy Merrill           0.1%\n    2\tBenny Wong              0.1%\n    2\tHunter Loftis           0.1%\n    2\tJake Gordon             0.1%\n    2\tBrian McKinney          0.1%\n    2\tRoman Shtylman          0.1%\n    2\tBen Weaver              0.1%\n    2\tDave Hoover             0.1%\n    2\tEivind Fjeldstad        0.1%\n    2\tDaniel Shaw             0.1%\n    1\tMatt Colyer             0.0%\n    1\tPau Ramon               0.0%\n    1\tPero Pejovic            0.0%\n    1\tPeter Rekdal Sunde      0.0%\n    1\tRaynos                  0.0%\n    1\tTeng Siong Ong          0.0%\n    1\tViktor Kelemen          0.0%\n    1\tctide                   0.0%\n    1\t8bitDesigner            0.0%\n    1\tisaacs                  0.0%\n    1\tmgutz                   0.0%\n    1\tpikeas                  0.0%\n    1\tshuwatto                0.0%\n    1\ttstrimple               0.0%\n    1\tewoudj                  0.0%\n    1\tAdam Sanderson          0.0%\n    1\tAndrii Kostenko         0.0%\n    1\tAndy Hiew               0.0%\n    1\tArpad Borsos            0.0%\n    1\tAshwin Purohit          0.0%\n    1\tBenjen                  0.0%\n    1\tDarren Torpey           0.0%\n    1\tGreg Ritter             0.0%\n    1\tGregory Ritter          0.0%\n    1\tJames Herdman           0.0%\n    1\tJim Snodgrass           0.0%\n    1\tJoe McCann              0.0%\n    1\tJonathan Dumaine        0.0%\n    1\tJonathan Palardy        0.0%\n    1\tJonathan Zacsh          0.0%\n    1\tJustin Lilly            0.0%\n    1\tKen Sato                0.0%\n    1\tMaciej Małecki          0.0%\n    1\tMasahiro Hayashi        0.0%\n```\n\n## License \n\n(The MIT License)\n\nCopyright (c) 2009-2012 TJ Holowaychuk &lt;tj@vision-media.ca&gt;\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\'Software\'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \'AS IS\', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n',
+41 silly resolved     _id: 'express@3.0.3',
+41 silly resolved     _from: 'express@*' } ]
+42 info install express@3.0.3 into /home/eimnpqb/alpha/search
+43 info installOne express@3.0.3
+44 verbose from cache /home/eimnpqb/.npm/express/3.0.3/package/package.json
+45 info /home/eimnpqb/alpha/search/node_modules/express unbuild
+46 verbose from cache /home/eimnpqb/alpha/search/node_modules/express/package.json
+47 info preuninstall express@3.0.3
+48 info uninstall express@3.0.3
+49 verbose true,/home/eimnpqb/alpha/search/node_modules,/home/eimnpqb/alpha/search/node_modules unbuild express@3.0.3
+50 verbose /home/eimnpqb/alpha/search/node_modules/.bin,[object Object] binRoot
+51 info /home/eimnpqb/alpha/search/node_modules/express unbuild
+52 verbose read json /home/eimnpqb/alpha/search/node_modules/express/package.json
+53 info preuninstall express@3.0.3
+54 info uninstall express@3.0.3
+55 verbose true,/home/eimnpqb/alpha/search/node_modules,/home/eimnpqb/alpha/search/node_modules unbuild express@3.0.3
+56 verbose /home/eimnpqb/alpha/search/node_modules/.bin,[object Object] binRoot
+57 error error rolling back Error: Refusing to delete: /home/eimnpqb/alpha/search/node_modules/.bin/express not in /home/eimnpqb/alpha/search/node_modules/express
+57 error error rolling back     at clobberFail (/usr/lib/nodejs/npm/lib/utils/gently-rm.js:41:12)
+57 error error rolling back     at next (/usr/lib/nodejs/npm/lib/utils/gently-rm.js:27:14)
+57 error error rolling back     at /usr/lib/nodejs/npm/lib/utils/gently-rm.js:36:12
+57 error error rolling back     at Object.oncomplete (fs.js:297:15)
+57 error error rolling back  express@3.0.3 { [Error: Refusing to delete: /home/eimnpqb/alpha/search/node_modules/.bin/express not in /home/eimnpqb/alpha/search/node_modules/express]
+57 error error rolling back   code: 'EEXIST',
+57 error error rolling back   path: '/home/eimnpqb/alpha/search/node_modules/.bin/express' }
+58 error Refusing to delete: /home/eimnpqb/alpha/search/node_modules/.bin/express not in /home/eimnpqb/alpha/search/node_modules/express
+File exists: /home/eimnpqb/alpha/search/node_modules/.bin/express
+Move it away, and try again.
+59 error System Linux 3.2.0-26-generic
+60 error command "nodejs" "/usr/bin/npm" "install" "express"
+61 error cwd /home/eimnpqb/alpha/search
+62 error node -v v0.8.9
+63 error npm -v 1.1.59
+64 error path /home/eimnpqb/alpha/search/node_modules/.bin/express
+65 error code EEXIST
+66 verbose exit [ 1, true ]

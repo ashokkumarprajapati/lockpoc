@@ -1,0 +1,31 @@
+{
+    "linkedin" : {
+		"appKey" : "6z0z3jb0dzw6",
+        "appSecret" : "Wj8EjGQqviDhFxqR",
+        "callbackUrl" : "http://localhost:8020/auth"
+    },
+    "npm" : {
+        "username" : "amit",
+        "password" : "amit",
+        "email" : "amit_archie@yahoo.co.in"
+    },
+    "ldap" : {
+        "host" : "169.144.104.100",
+        "port" : "8080",
+        "path" : "/SXS-Automation-Core-APIs/coreServices/ldap/auth",
+        "method" : "POST"
+    },
+    "db" : {
+        "url" : "http://narendra:narendra@localhost:5984/",
+        "user" : "narendra",
+        "password" : "narendra",
+        "schema" : "profiles",
+        "_design" : "_design/app/"        
+    },    
+    "imagedb" : {
+        "url" : "http://narendra:narendra@localhost:5984/",
+        "schema" : "profileimagedb",
+        "_design_view" : "_design/image/_view/getDocid"
+    } 
+       
+}    

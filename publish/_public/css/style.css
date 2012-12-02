@@ -1,0 +1,136 @@
+@charset "utf-8";
+/* CSS Document */
+
+body
+{
+	margin:0px; padding:0px;
+	font-family:arial;
+	font-size:12px;
+	color:666;
+	
+}
+
+#content-wrapper
+{
+	width:100%;
+	margin:0 auto;
+}
+
+
+header
+{
+	width:100%;
+	margin:0 auto;
+}
+
+
+header img{padding-left:100px;}
+
+figure
+{
+	margin:0px; padding:0px;
+}
+
+.eGB {
+	background-image: url(../images/btm_bg.jpg);
+	background-repeat: repeat-x; height:3px; 
+}
+ 
+section
+{
+	width:99.8%; border:1px solid #fff !important;
+	background:url(../images/login-bg1.jpg); background-repeat:repeat-x;
+	margin:0px !important; padding:0px !important; 
+	width:99.9%\9; /***** IE 8 hack *******/
+}
+
+
+.login-section{width:25%; margin:0 auto; padding-bottom:40px;}
+
+.login
+{
+	width:530px;
+	height:479px;
+	background-image: url(../images/login-bg.jpg);
+	background-position:center !important;
+}
+
+
+footer
+{
+	margin:0px; padding:0px;
+}
+
+.login ul
+{
+	margin:0px; padding:px;
+	padding-top:45%; padding-left:70px;
+}
+
+.login ul li
+{
+	margin:0px; padding:px;
+	list-style-type:none;
+}
+
+			
+form input[type='submit']{
+                border: 1px solid #b0aaaa;
+				border-bottom: 2px inset #242853;
+				border-right: 2px inset #242853;
+                height: 28px;
+                padding: 3px;
+                color:#fff; display:block !important;
+				background:#057fbe; padding:5px;
+				margin-right:5px;
+				 -moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				border-radius: 5px; 
+
+            }
+			
+form input[type='submit']:hover
+{
+                border: 1px solid #b0aaaa;
+				border-bottom: 2px inset #242853;
+				border-right: 2px inset #242853;
+                height: 28px;
+                padding: 3px;
+                color:#fff; display:block !important;
+				background:#242853; padding:5px;
+				margin-right:5px;
+				 -moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				border-radius: 5px; 
+            }
+
+form input[type='text']{
+               display: block;
+				margin:10px 0;
+				border:1px solid #a3a3a3;
+				height:32px; width:160px;
+				 -moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				border-radius: 5px; padding-left:20px; 
+				color:#666; font-size:13px; line-height:32px;
+            }
+			
+form input[type='password']{
+               display: block;
+				margin:10px 0;
+				border:1px solid #a3a3a3;
+				height:32px; width:160px;
+				 -moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				border-radius: 5px; padding-left:20px; 
+				color:#666; font-size:13px; line-height:32px;
+            }
+
+
+footer
+{
+	text-align:center;
+	padding:10px 0 0 0;
+	line-height:20px;
+}
+

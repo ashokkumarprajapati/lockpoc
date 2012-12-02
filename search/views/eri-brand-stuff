@@ -1,0 +1,36 @@
+
+background-color: #F8F8F8
+
+Nav Menu
+
+font: 13px/1 Arial,sans-serif;
+font-family: Arial, sans-serif;
+font-size: 13px;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+line-height: 1;
+
+body
+
+font: 13px/1.231 arial,helvetica,clean,sans-serif;
+font-family: arial, helvetica, clean, sans-serif;
+font-size: 13px;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+line-height: 1.231;
+}
+
+#ICH #ICH-BAR #ICH-HEADING {
+position: relative;
+float: left;
+z-index: 499;
+font-family: "Ericsson Capital TT Regular",eEricssonCapital,Arial,sans-serif;
+font-size: 2.3em;
+font-weight: 400;
+outline: medium none;
+text-transform: uppercase;
+}
+
+@font-face{font-family:'eEricssonCapital';src:url('/ich/fonts/EricssonCapital_1.eot');src:url('/ich/fonts/EricssonCapital_1.eot?') format('embedded-opentype'), url('/ich/fonts/EricssonCapital_1.otf') format('opentype');}.ichReset{}.ichReset html,.ichReset body,.ichReset div,.ichReset span,.ichReset applet,.ichReset object,.ichReset iframe,.ichReset h1,.ichReset h2,.ichReset h3,.ichReset h4,.ichReset h5,.ichReset h6,.ichReset p,.ichReset blockquote,.ichReset pre,.ichReset a,.ichReset abbr,.ichReset acronym,.ichReset address,.ichReset big,.ichReset cite,.ichReset code,.ichReset del,.ichReset dfn,.ichReset em,.ichReset img,.ichReset ins,.ichReset kbd,.ichReset q,.ichReset s,.ichReset samp,.ichReset small,.ichReset strike,.ichReset strong,.ichReset sub,.ichReset sup,.ichReset tt,.ichReset var,.ichReset b,.ichReset u,.ichReset i,.ichReset center,.ichReset dl,.ichReset dt,.ichReset dd,.ichReset ol,.ichReset ul,.ichReset li,.ichReset fieldset,.ichReset form,.ichReset label,.ichReset legend,.ichReset table,.ichReset caption,.ichReset tbody,.ichReset tfoot,.ichReset thead,.ichReset tr,.ichReset th,.ichReset td,.ichReset article,.ichReset aside,.ichReset canvas,.ichReset details,.ichReset embed,.ichReset figure,.ichReset figcaption,.ichReset footer,.ichReset header,.ichReset hgroup,.ichReset menu,.ichReset nav,.ichReset output,.ichReset ruby,.ichReset section,.ichReset summary,.ichReset time,.ichReset mark,.ichReset audio,.ichReset video{margin:0;padding:0;border:0;font-size:13px;font:13px/1 Arial,sans-serif;vertical-align:baseline;text-align:left;}
