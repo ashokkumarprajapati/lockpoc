@@ -5291,6 +5291,7 @@ input[type="submit"].btn.btn-mini {
 .thumbnails {
   margin-left: -20px;
   list-style: none;
+  float:left;
   *zoom: 1;
 }
 
@@ -5317,8 +5318,10 @@ input[type="submit"].btn.btn-mini {
 
 .thumbnail {
   display: block;
-  padding: 4px;
+  padding: 10px;
   line-height: 20px;
+  float:left;
+  margin:0 10px 20px 10px;
   border: 1px solid #ddd;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
@@ -5331,6 +5334,8 @@ input[type="submit"].btn.btn-mini {
        -o-transition: all 0.2s ease-in-out;
           transition: all 0.2s ease-in-out;
 }
+
+.thumbnail h4{line-height:normal; font-size:14px; padding:0px ; margin-bottom :0px }
 
 a.thumbnail:hover {
   border-color: #0088cc;

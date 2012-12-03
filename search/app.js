@@ -78,6 +78,10 @@ app.get('#splash', function(req, res) {
   res.render('splash', { title: 'Search' });
 });
 
+app.get('#profile', function(req, res) {
+  res.render('profile', { title: 'Profile' });
+});
+
 ////////////////////////////////////////////////
 // HTTP Server
 ////////////////////////////////////////////////
